@@ -472,6 +472,10 @@ function BackgroundSizePanelItem( {
 			nextPosition = undefined;
 		}
 
+		if ( next === 'cover' ) {
+			nextRepeat = undefined;
+		}
+
 		if (
 			( currentValueForToggle === 'cover' ||
 				currentValueForToggle === 'contain' ) &&
