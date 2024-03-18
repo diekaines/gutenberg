@@ -8,8 +8,6 @@ const backgroundImage = {
 	name: 'backgroundImage',
 	generate: ( style: Style, options: StyleOptions ) => {
 		const _backgroundImage = style?.background?.backgroundImage;
-		const _backgroundSize = style?.background?.backgroundSize;
-
 		const styleRules: GeneratedCSSRule[] = [];
 
 		if ( ! _backgroundImage ) {
@@ -26,15 +24,6 @@ const backgroundImage = {
 				key: 'backgroundImage',
 				value: _backgroundImage,
 			} );
-
-			// If no background size is set, but an image is, default to auto.
-			if ( _backgroundSize === undefined ) {
-				styleRules.push( {
-					selector: options.selector,
-					key: 'backgroundSize',
-					value: 'auto',
-				} );
-			}
 		}
 
 		if (
@@ -50,15 +39,6 @@ const backgroundImage = {
 					safeDecodeURI( _backgroundImage.url )
 				) }' )`,
 			} );
-
-			// If no background size is set, but an image is, default to auto.
-			if ( _backgroundSize === undefined ) {
-				styleRules.push( {
-					selector: options.selector,
-					key: 'backgroundSize',
-					value: 'auto',
-				} );
-			}
 		}
 
 		return styleRules;
@@ -93,8 +73,6 @@ const backgroundSize = {
 	name: 'backgroundSize',
 	generate: ( style: Style, options: StyleOptions ) => {
 		const _backgroundSize = style?.background?.backgroundSize;
-		const _backgroundPosition = style?.background?.backgroundPosition;
-
 		const styleRules: GeneratedCSSRule[] = [];
 
 		if ( _backgroundSize === undefined ) {
@@ -109,18 +87,6 @@ const backgroundSize = {
 				'backgroundSize'
 			)
 		);
-
-		// If background size is set to contain, but no position is set, default to center.
-		if (
-			_backgroundSize === 'contain' &&
-			_backgroundPosition === undefined
-		) {
-			styleRules.push( {
-				selector: options.selector,
-				key: 'backgroundPosition',
-				value: 'center',
-			} );
-		}
 
 		return styleRules;
 	},
