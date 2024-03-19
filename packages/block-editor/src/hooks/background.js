@@ -43,6 +43,38 @@ import { store as blockEditorStore } from '../store';
 export const BACKGROUND_SUPPORT_KEY = 'background';
 export const IMAGE_BACKGROUND_TYPE = 'image';
 
+function useBlockProps( { name, style } ) {
+	if ( ! hasBackgroundSupport( name ) ) {
+		return {};
+	}
+
+	const backgroundImage = style?.background?.backgroundImage;
+
+	if ( backgroundImage?.source === 'file' && !! backgroundImage?.url ) {
+		// Block background size defaults to cover.
+		const backgroundSize = style?.background?.backgroundSize ?? 'cover';
+		let backgroundPosition = style?.background?.backgroundPosition;
+
+		// If background size is set to contain, but no position is set, default to center.
+		if (
+			backgroundSize === 'contain' &&
+			backgroundPosition === undefined
+		) {
+			backgroundPosition = 'center';
+		}
+
+		return {
+			style: {
+				...style,
+				backgroundSize,
+				backgroundPosition,
+			},
+		};
+	}
+
+	return { style };
+}
+
 /**
  * Checks if there is a current value in the background image block support
  * attributes.
@@ -628,3 +660,9 @@ export function BackgroundImagePanel( props ) {
 		</InspectorControls>
 	);
 }
+
+export default {
+	useBlockProps,
+	attributeKeys: [ 'style' ],
+	hasSupport: hasBackgroundSupport,
+};

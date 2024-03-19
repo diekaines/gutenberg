@@ -29,6 +29,7 @@ import './metadata';
 import blockHooks from './block-hooks';
 import blockRenaming from './block-renaming';
 import './use-bindings-attributes';
+import background from './background';
 
 createBlockEditFilter(
 	[
@@ -47,6 +48,7 @@ createBlockEditFilter(
 );
 createBlockListBlockFilter( [
 	align,
+	background,
 	style,
 	color,
 	dimensions,
