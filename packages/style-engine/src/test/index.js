@@ -451,11 +451,6 @@ describe( 'getCSSRules', () => {
 				key: 'backgroundImage',
 				value: "url( 'https://example.com/image.jpg' )",
 			},
-			{
-				selector: '.some-selector',
-				key: 'backgroundSize',
-				value: 'auto',
-			},
 		] );
 	} );
 
@@ -513,11 +508,6 @@ describe( 'getCSSRules', () => {
 				selector: '.some-selector',
 				key: 'backgroundSize',
 				value: 'contain',
-			},
-			{
-				selector: '.some-selector',
-				key: 'backgroundPosition',
-				value: 'center',
 			},
 		] );
 	} );
