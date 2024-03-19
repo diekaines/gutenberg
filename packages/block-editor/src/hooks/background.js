@@ -451,7 +451,7 @@ function BackgroundSizePanelItem( {
 	const repeatValue = style?.background?.backgroundRepeat;
 	const positionValue = style?.background?.backgroundPosition;
 
-	// An `undefined` value is treated as `cover` by the toggle group control.
+	// An `undefined` value is treated as whatever the value of defaultValue by the toggle group control.
 	// An empty string is treated as `auto` by the toggle group control. This
 	// allows a user to select "Size" and then enter a custom value, with an
 	// empty value being treated as `auto`.
